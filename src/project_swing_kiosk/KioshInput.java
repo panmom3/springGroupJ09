@@ -1,4 +1,4 @@
-package t7ex_kiosk;
+package project_swing_kiosk;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class KioshSearch {
+public class KioshInput {
 	private KioshDAO dao = new KioshDAO();
 	private KioshVO vo = null;
 	private int res = 0;
@@ -28,8 +28,7 @@ public class KioshSearch {
 	private JTextField txtCount;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
-	public KioshSearch(KioshVO vo) {
-		this.vo = vo;
+	public KioshInput() {
 		initialize();
 	}
 
@@ -47,7 +46,7 @@ public class KioshSearch {
 		frame.getContentPane().add(pn1);
 		pn1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("재활용기 등록 수정");
+		JLabel lblNewLabel = new JLabel("재활용기 등록 화면");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(67, 0, 705, 55);
@@ -88,16 +87,12 @@ public class KioshSearch {
 		pn3.add(lblId);
 		
 		txtId = new JTextField();
-		txtId.setFont(new Font("굴림", Font.PLAIN, 15));
-		txtId.setEditable(false);
 		txtId.setHorizontalAlignment(SwingConstants.CENTER);
 		txtId.setBounds(331, 37, 354, 38);
 		pn3.add(txtId);
 		txtId.setColumns(10);
 		
 		txtName = new JTextField();
-		txtName.setFont(new Font("굴림", Font.PLAIN, 15));
-		txtName.setEditable(false);
 		txtName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtName.setColumns(10);
 		txtName.setBounds(331, 95, 354, 38);
@@ -162,38 +157,22 @@ public class KioshSearch {
 		frame.getContentPane().add(pn4);
 		pn4.setLayout(null);
 		
-		JButton btnUpdate = new JButton("수정하기");
-		btnUpdate.setFont(new Font("굴림", Font.BOLD, 16));
-		btnUpdate.setBounds(112, 25, 150, 43);
-		pn4.add(btnUpdate);
+		JButton btnInput = new JButton("등록하기");
+		btnInput.setFont(new Font("굴림", Font.BOLD, 16));
+		btnInput.setBounds(248, 25, 150, 43);
+		pn4.add(btnInput);
 		
-		JButton btnDelete = new JButton("삭제하기");
-		btnDelete.setFont(new Font("굴림", Font.BOLD, 16));
-		btnDelete.setBounds(349, 25, 150, 43);
-		pn4.add(btnDelete);
-		
-		JButton btnClose = new JButton("종료");
+		JButton btnClose = new JButton("종료하기");
 		btnClose.setFont(new Font("굴림", Font.BOLD, 16));
-		btnClose.setBounds(582, 25, 150, 43);
+		btnClose.setBounds(410, 25, 150, 43);
 		pn4.add(btnClose);
-		
-		// vo에서 담겨서 넘어온 회원의 정보를 검색창에 뿌려줄수 있도록 처리한다.
-		txtId.setText(vo.getUserID());
-		txtName.setText(vo.getName());
-		if(vo.getAddress().equals("청원구")) rdaddr1.setSelected(true);
-		if(vo.getAddress().equals("상당구")) rdaddr2.setSelected(true);
-		if(vo.getAddress().equals("흥덕구")) rdaddr3.setSelected(true);
-		if(vo.getAddress().equals("서원구")) rdaddr4.setSelected(true);
-		cbType.setSelectedItem(vo.getAddress());
-		txtCount.setText(String.valueOf(vo.getCount()));
 		
 		frame.setVisible(true);
 	//-----------------------위쪽 디자인, 아래쪽 메소드-----------------------------------
 		
-		// 회원 수정
-		btnUpdate.addActionListener(new ActionListener() {
+		// 등록버튼
+		btnInput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				String userID = txtId.getText().trim();
 				String name = txtName.getText().trim();
 				String address = "";
@@ -201,49 +180,37 @@ public class KioshSearch {
 				int count = Integer.parseInt(txtCount.getText().trim());
 				
 				//유효성검사
-				if(rdaddr1.isSelected()) address = "청원구";
-				else if(rdaddr2.isSelected()) address = "상당구";
-				else if(rdaddr3.isSelected()) address = "흥덕구";
-				else address = "서원구";
-					
-				//기록한 내용을 vo에 담아서 DB에 저장
-				vo = new KioshVO();
-				vo.setUserID(userID);
-				vo.setName(name);
-				vo.setAddress(address);
-				vo.setProduct(product);
-				vo.setCount(count);
-				
-				res = dao.setKioshUpdata(vo);
-				
-				if(res !=0) {
-					JOptionPane.showMessageDialog(frame, "수정 등록 완료");
-//					frame.dispose();
-//					new KioshMain();
-				} else {
-					JOptionPane.showMessageDialog(frame, "수정 등록 실패");
+				if(userID.equals("")) {
+					JOptionPane.showMessageDialog(frame, "아이디를 입력하세요");
 					txtId.requestFocus();
-				}
-			}
-		});
-		
-		//삭제하기
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String userID = txtId.getText();
-				
-				int ans = JOptionPane.showConfirmDialog(frame, "등록정보를 삭제하시겠습니까?", "정보삭제창", JOptionPane.YES_NO_OPTION);
-				if(ans == 0) {
-					int res = dao.setKioshDelete(userID);
+				} else if(name.equals("")) {
+					JOptionPane.showMessageDialog(frame, "이름을 입력하세요");
+				} else {
+					if(rdaddr1.isSelected()) address = "청원구";
+					else if(rdaddr2.isSelected()) address = "상당구";
+					else if(rdaddr3.isSelected()) address = "흥덕구";
+					else address = "서원구";
 					
-					if(res != 0) {
-						JOptionPane.showMessageDialog(frame, "등록정보가 삭제되었습니다.");
+					//기록한 내용을 vo에 담아서 DB에 저장
+					vo = new KioshVO();
+					vo.setUserID(userID);
+					vo.setName(name);
+					vo.setAddress(address);
+					vo.setProduct(product);
+					vo.setCount(count);
+					
+					res = dao.setKioshInput(vo);
+					
+					if(res !=0) {
+						JOptionPane.showMessageDialog(frame, "수거 등록 완료");
 						frame.dispose();
 						new KioshMain();
 					} else {
-						JOptionPane.showMessageDialog(frame, "등록정보 삭제 취소되었습니다.");
+						JOptionPane.showMessageDialog(frame, "수거 등록 실패");
+						txtId.requestFocus();
 					}
 				}
+				
 			}
 		});
 				

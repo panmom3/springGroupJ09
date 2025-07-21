@@ -1,4 +1,4 @@
-package t7ex_kiosk;
+package project_swing_kiosk;
 
 import java.awt.Color;
 import java.awt.Font;

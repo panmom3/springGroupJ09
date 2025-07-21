@@ -1,4 +1,4 @@
-package t7ex_kiosk;
+package project_swing_kiosk;
 
 import java.sql.SQLException;
 import java.util.Vector;
