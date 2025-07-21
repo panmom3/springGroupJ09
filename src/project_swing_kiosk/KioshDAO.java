@@ -3,9 +3,13 @@ package project_swing_kiosk;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class KioshDAO extends DBConn{
 	KioshVO vo = null;
-
+	
+	// 등록
 	public int setKioshInput(KioshVO vo) {
 		int res = 0;
 		try {
@@ -81,8 +85,7 @@ public class KioshDAO extends DBConn{
 		}
 		return res;
 	}
-//	리스트
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	// 리스트
 	public Vector getKioshList() {
 		Vector vData = new Vector();
 		try {
@@ -108,7 +111,7 @@ public class KioshDAO extends DBConn{
 		
 		return vData;
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	public Vector getConditionSearch(String fieldName, String textCondition) {
 		Vector vData = new Vector();
 		try {
@@ -136,5 +139,39 @@ public class KioshDAO extends DBConn{
 		}
 		return vData;
 	}
+	
+	//포인트적립
+	public int setKioshPointIn(KioshVO vo) {
+		int res = 0;
+		try {
+			sql = "select points from recycling where userID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getUserID());
+			rs = pstmt.executeQuery();
+			
+			int currentPoint = 10;
+			if(rs.next()) {
+				currentPoint = rs.getInt("points");
+			}
+			
+			rs.close();
+			pstmt.close();
+	
+			sql = "update recycling set points = points * ? where userID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getPoints());
+			pstmt.setString(2, vo.getUserID());
+			res = pstmt.executeUpdate();	
+			
+			JOptionPane.showMessageDialog(null, "포인트가 적립되었습니다!");
+		} catch (SQLException e) {
+			System.out.println("sql오류(setKioshPointIn) : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
+	
+
 	
 }

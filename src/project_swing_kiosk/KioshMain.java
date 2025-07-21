@@ -53,7 +53,7 @@ public class KioshMain {
 		
 		JLabel lblImage = new JLabel("New label");
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImage.setIcon(new ImageIcon(KioshMain.class.getResource("/t7ex_kiosk/images/img_title.png")));
+		lblImage.setIcon(new ImageIcon(KioshMain.class.getResource("/project_swing_kiosk/images/img_title.png")));
 		lblImage.setBounds(0, 0, 784, 364);
 		pn2.add(lblImage);
 		

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -32,6 +33,7 @@ public class KioshInput {
 		initialize();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("재활용기 등록 처리");
@@ -210,6 +212,21 @@ public class KioshInput {
 						txtId.requestFocus();
 					}
 				}
+				
+			}
+		});
+		
+		// 포인트적립
+		btnPointIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String userId = txtId.getText().trim();
+				int pointToAdd = Integer.parseInt(txtCount.getText().trim());
+				
+				vo = new KioshVO();
+				vo.setUserID(userId);
+				vo.setPoints(pointToAdd);
+				
+				res = dao.setKioshPointIn(vo);
 				
 			}
 		});
