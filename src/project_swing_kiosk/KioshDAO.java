@@ -13,13 +13,14 @@ public class KioshDAO extends DBConn{
 	public int setKioshInput(KioshVO vo) {
 		int res = 0;
 		try {
-			sql = "insert into recycling values (?,?,?,?,?,default,default)";
+			sql = "insert into recycling values (?,?,?,?,?,?,default)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getUserID());
 			pstmt.setString(2, vo.getName());
 			pstmt.setString(3, vo.getAddress());
 			pstmt.setString(4, vo.getProduct());
 			pstmt.setInt(5, vo.getCount());
+			pstmt.setInt(6, vo.getPoints());
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("sql오류(setKioshInput) : " + e.getMessage());
@@ -139,46 +140,4 @@ public class KioshDAO extends DBConn{
 		}
 		return vData;
 	}
-	
-	//포인트적립
-	public int setKioshPointIn(KioshVO vo) {
-		int res = 0;
-		//int point = 0;
-//		try {
-//			sql = "select points from recycling where userID = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, vo.getUserID());
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				point = rs.getInt("points");
-//			}
-//			
-//			//
-//			
-//			rs.close();
-//			pstmt.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return point;
-		
-		
-		try {
-			sql = "update recycling set points = ? where userID = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, vo.getPoints());
-			pstmt.setString(2, vo.getUserID());
-			res = pstmt.executeUpdate();	
-	
-		} catch (SQLException e) {
-			System.out.println("sql오류(setKioshPointIn) : " + e.getMessage());
-		} finally {
-			pstmtClose();
-		}
-		return res;
-	}
-	
-
-	
 }

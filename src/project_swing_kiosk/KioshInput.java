@@ -61,6 +61,7 @@ public class KioshInput {
 		pn2.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("１개당 １０포인트 적립");
+		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 15));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(182, 10, 472, 52);
 		pn2.add(lblNewLabel_2);
@@ -149,10 +150,10 @@ public class KioshInput {
 		cbType.setBounds(328, 211, 357, 37);
 		pn3.add(cbType);
 		
-		JButton btnPointIn = new JButton("적립");
-		btnPointIn.setFont(new Font("굴림", Font.PLAIN, 15));
-		btnPointIn.setBounds(584, 269, 101, 38);
-		pn3.add(btnPointIn);
+		JLabel lblNewLabel_1 = new JLabel("개");
+		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(584, 284, 32, 18);
+		pn3.add(lblNewLabel_1);
 		
 		JPanel pn4 = new JPanel();
 		pn4.setBounds(0, 465, 784, 96);
@@ -180,6 +181,7 @@ public class KioshInput {
 				String address = "";
 				String product = (String) cbType.getSelectedItem();
 				int count = Integer.parseInt(txtCount.getText().trim());
+				int pointToAdd = count * 10;
 				
 				//유효성검사
 				if(userID.equals("")) {
@@ -200,6 +202,7 @@ public class KioshInput {
 					vo.setAddress(address);
 					vo.setProduct(product);
 					vo.setCount(count);
+					vo.setPoints(pointToAdd);
 					
 					res = dao.setKioshInput(vo);
 					
@@ -211,31 +214,6 @@ public class KioshInput {
 						JOptionPane.showMessageDialog(frame, "수거 등록 실패");
 						txtId.requestFocus();
 					}
-				}
-				
-			}
-		});
-		
-		// 포인트적립
-		btnPointIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String userId = txtId.getText().trim();
-				int count = Integer.parseInt((txtCount.getText().trim()));
-				int pointToAdd = count * 10;
-				
-				vo = new KioshVO();
-				vo.setUserID(userId);
-				vo.setPoints(pointToAdd);
-				
-				res = dao.setKioshPointIn(vo);
-				
-				if(res > 0) {
-					JOptionPane.showMessageDialog(null, pointToAdd + "포인트가 적립되었습니다!", "포인트 적립", JOptionPane.INFORMATION_MESSAGE);
-					
-					//txtCount.setText("");
-					//txtId.setText("");
-				} else {
-					JOptionPane.showMessageDialog(null, "포인트 적립에 실패했습니다.", "오류", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
