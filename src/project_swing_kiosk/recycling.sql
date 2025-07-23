@@ -10,9 +10,6 @@ create table recycling (
 	createdAt datetime default now()  /*등록일*/
 );
 
-
-desc recycling;
-
 select * from recycling;
 
 alter table recycling change column userID varchar(20);
@@ -20,4 +17,16 @@ alter table recycling change column points default 10;
 
 delete from recycling;
 
+delete from recycling where userID = "r01";
+
 drop table recycling;
+
+
+
+
+
+
+
+
+
+

@@ -143,27 +143,34 @@ public class KioshDAO extends DBConn{
 	//포인트적립
 	public int setKioshPointIn(KioshVO vo) {
 		int res = 0;
+		//int point = 0;
+//		try {
+//			sql = "select points from recycling where userID = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, vo.getUserID());
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//				point = rs.getInt("points");
+//			}
+//			
+//			//
+//			
+//			rs.close();
+//			pstmt.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return point;
+		
+		
 		try {
-			sql = "select points from recycling where userID = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getUserID());
-			rs = pstmt.executeQuery();
-			
-			int currentPoint = 10;
-			if(rs.next()) {
-				currentPoint = rs.getInt("points");
-			}
-			
-			rs.close();
-			pstmt.close();
-	
-			sql = "update recycling set points = points * ? where userID = ?";
+			sql = "update recycling set points = ? where userID = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getPoints());
 			pstmt.setString(2, vo.getUserID());
 			res = pstmt.executeUpdate();	
-			
-			JOptionPane.showMessageDialog(null, "포인트가 적립되었습니다!");
+	
 		} catch (SQLException e) {
 			System.out.println("sql오류(setKioshPointIn) : " + e.getMessage());
 		} finally {

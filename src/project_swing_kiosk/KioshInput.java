@@ -220,13 +220,23 @@ public class KioshInput {
 		btnPointIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userId = txtId.getText().trim();
-				int pointToAdd = Integer.parseInt(txtCount.getText().trim());
+				int count = Integer.parseInt((txtCount.getText().trim()));
+				int pointToAdd = count * 10;
 				
 				vo = new KioshVO();
 				vo.setUserID(userId);
 				vo.setPoints(pointToAdd);
 				
 				res = dao.setKioshPointIn(vo);
+				
+				if(res > 0) {
+					JOptionPane.showMessageDialog(null, pointToAdd + "포인트가 적립되었습니다!", "포인트 적립", JOptionPane.INFORMATION_MESSAGE);
+					
+					//txtCount.setText("");
+					//txtId.setText("");
+				} else {
+					JOptionPane.showMessageDialog(null, "포인트 적립에 실패했습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});

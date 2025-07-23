@@ -119,9 +119,8 @@ public class KioshMain {
 		// 종료버튼
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//			int ans = JOptionPane.showConfirmDialog(frame, "작업종료할까요??","작업종료", JOptionPane.YES_NO_OPTION);
-//			if(ans == 0) System.exit(0);		
-			System.exit(0);		
+			int ans = JOptionPane.showConfirmDialog(frame, "작업종료할까요??","작업종료", JOptionPane.YES_NO_OPTION);
+			if(ans == 0) System.exit(0);		
 			}
 		});
 	}
