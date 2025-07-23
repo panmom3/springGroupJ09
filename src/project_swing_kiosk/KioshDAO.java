@@ -57,11 +57,11 @@ public class KioshDAO extends DBConn{
 	public int setKioshUpdata(KioshVO vo) {
 		int res = 0;
 		try {
-			sql = "update recycling set address=? , product=? , count=? where userID=?";
+			sql = "update recycling set product=? , count=?, points=? where userID=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getAddress());
-			pstmt.setString(2, vo.getProduct());
-			pstmt.setInt(3, vo.getCount());
+			pstmt.setString(1, vo.getProduct());
+			pstmt.setInt(2, vo.getCount());
+			pstmt.setInt(3, vo.getPoints());
 			pstmt.setString(4, vo.getUserID());
 			res = pstmt.executeUpdate();	
 		} catch (SQLException e) {

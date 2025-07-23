@@ -47,21 +47,21 @@ public class KioshSearch {
 		frame.getContentPane().add(pn1);
 		pn1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("재활용기 등록 수정");
+		JLabel lblNewLabel = new JLabel("재활용기 등록 수정하기");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(67, 0, 705, 55);
+		lblNewLabel.setBounds(12, 0, 760, 55);
 		pn1.add(lblNewLabel);
 		
 		JPanel pn2 = new JPanel();
-		pn2.setBackground(new Color(204, 255, 204));
+		pn2.setBackground(new Color(255, 182, 193));
 		pn2.setBounds(0, 54, 784, 72);
 		frame.getContentPane().add(pn2);
 		pn2.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("１개당 １０포인트 적립");
+		JLabel lblNewLabel_2 = new JLabel("1개당 10포인트");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(182, 10, 472, 52);
+		lblNewLabel_2.setBounds(12, 10, 760, 52);
 		pn2.add(lblNewLabel_2);
 		
 		JPanel pn3 = new JPanel();
@@ -72,26 +72,26 @@ public class KioshSearch {
 		JLabel lblName = new JLabel("성명");
 		lblName.setFont(new Font("굴림", Font.PLAIN, 15));
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setBounds(134, 95, 161, 38);
+		lblName.setBounds(128, 96, 161, 38);
 		pn3.add(lblName);
 		
 		JLabel lblAddr = new JLabel("사는곳");
 		lblAddr.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAddr.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblAddr.setBounds(134, 153, 161, 38);
+		lblAddr.setBounds(128, 154, 161, 38);
 		pn3.add(lblAddr);
 		
 		JLabel lblId = new JLabel("아이디");
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblId.setBounds(134, 37, 161, 38);
+		lblId.setBounds(128, 38, 161, 38);
 		pn3.add(lblId);
 		
 		txtId = new JTextField();
 		txtId.setFont(new Font("굴림", Font.PLAIN, 15));
 		txtId.setEditable(false);
 		txtId.setHorizontalAlignment(SwingConstants.CENTER);
-		txtId.setBounds(331, 37, 354, 38);
+		txtId.setBounds(325, 38, 354, 38);
 		pn3.add(txtId);
 		txtId.setColumns(10);
 		
@@ -100,62 +100,61 @@ public class KioshSearch {
 		txtName.setEditable(false);
 		txtName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtName.setColumns(10);
-		txtName.setBounds(331, 95, 354, 38);
+		txtName.setBounds(325, 96, 354, 38);
 		pn3.add(txtName);
 		
 		JRadioButton rdaddr1 = new JRadioButton("청원구");
+		rdaddr1.setEnabled(false);
 		buttonGroup.add(rdaddr1);
 		rdaddr1.setFont(new Font("굴림", Font.PLAIN, 15));
-		rdaddr1.setBounds(331, 152, 69, 38);
+		rdaddr1.setBounds(325, 153, 69, 38);
 		pn3.add(rdaddr1);
 		
 		JRadioButton rdaddr2 = new JRadioButton("상당구");
+		rdaddr2.setEnabled(false);
 		buttonGroup.add(rdaddr2);
 		rdaddr2.setFont(new Font("굴림", Font.PLAIN, 15));
-		rdaddr2.setBounds(429, 152, 69, 38);
+		rdaddr2.setBounds(423, 153, 69, 38);
 		pn3.add(rdaddr2);
 		
 		JRadioButton rdaddr3 = new JRadioButton("흥덕구");
+		rdaddr3.setEnabled(false);
 		buttonGroup.add(rdaddr3);
 		rdaddr3.setFont(new Font("굴림", Font.PLAIN, 15));
-		rdaddr3.setBounds(522, 152, 69, 38);
+		rdaddr3.setBounds(516, 153, 69, 38);
 		pn3.add(rdaddr3);
 		
 		JRadioButton rdaddr4 = new JRadioButton("서원구");
+		rdaddr4.setEnabled(false);
 		buttonGroup.add(rdaddr4);
 		rdaddr4.setFont(new Font("굴림", Font.PLAIN, 15));
-		rdaddr4.setBounds(616, 152, 69, 38);
+		rdaddr4.setBounds(610, 153, 69, 38);
 		pn3.add(rdaddr4);
 		
 		JLabel lblCount = new JLabel("수거수량");
 		lblCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCount.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblCount.setBounds(134, 269, 161, 38);
+		lblCount.setBounds(128, 270, 161, 38);
 		pn3.add(lblCount);
 		
 		txtCount = new JTextField();
 		txtCount.setFont(new Font("굴림", Font.PLAIN, 15));
 		txtCount.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCount.setColumns(10);
-		txtCount.setBounds(330, 268, 242, 38);
+		txtCount.setBounds(324, 269, 242, 38);
 		pn3.add(txtCount);
 		
 		JLabel lblType = new JLabel("수거종류");
 		lblType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblType.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblType.setBounds(134, 211, 161, 38);
+		lblType.setBounds(128, 212, 161, 38);
 		pn3.add(lblType);
 		
 		JComboBox cbType = new JComboBox();
 		cbType.setFont(new Font("굴림", Font.PLAIN, 15));
 		cbType.setModel(new DefaultComboBoxModel(new String[] {"투명페트병", "캔류", "유리병", "종이팩", "폐건전지"}));
-		cbType.setBounds(328, 211, 357, 37);
+		cbType.setBounds(322, 212, 357, 37);
 		pn3.add(cbType);
-		
-		JButton btnPointIn = new JButton("적립");
-		btnPointIn.setFont(new Font("굴림", Font.PLAIN, 15));
-		btnPointIn.setBounds(584, 269, 101, 38);
-		pn3.add(btnPointIn);
 		
 		JPanel pn4 = new JPanel();
 		pn4.setBounds(0, 465, 784, 96);
@@ -164,17 +163,17 @@ public class KioshSearch {
 		
 		JButton btnUpdate = new JButton("수정하기");
 		btnUpdate.setFont(new Font("굴림", Font.BOLD, 16));
-		btnUpdate.setBounds(112, 25, 150, 43);
+		btnUpdate.setBounds(97, 26, 150, 43);
 		pn4.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("삭제하기");
 		btnDelete.setFont(new Font("굴림", Font.BOLD, 16));
-		btnDelete.setBounds(349, 25, 150, 43);
+		btnDelete.setBounds(334, 26, 150, 43);
 		pn4.add(btnDelete);
 		
 		JButton btnClose = new JButton("종료");
 		btnClose.setFont(new Font("굴림", Font.BOLD, 16));
-		btnClose.setBounds(582, 25, 150, 43);
+		btnClose.setBounds(567, 26, 150, 43);
 		pn4.add(btnClose);
 		
 		// vo에서 담겨서 넘어온 회원의 정보를 검색창에 뿌려줄수 있도록 처리한다.
@@ -186,6 +185,11 @@ public class KioshSearch {
 		if(vo.getAddress().equals("서원구")) rdaddr4.setSelected(true);
 		cbType.setSelectedItem(vo.getAddress());
 		txtCount.setText(String.valueOf(vo.getCount()));
+		
+		JLabel lblNewLabel_1 = new JLabel("개");
+		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(578, 276, 30, 26);
+		pn3.add(lblNewLabel_1);
 		
 		frame.setVisible(true);
 	//-----------------------위쪽 디자인, 아래쪽 메소드-----------------------------------
@@ -199,6 +203,7 @@ public class KioshSearch {
 				String address = "";
 				String product = (String) cbType.getSelectedItem();
 				int count = Integer.parseInt(txtCount.getText().trim());
+				int pointToAdd = count * 10;
 				
 				//유효성검사
 				if(rdaddr1.isSelected()) address = "청원구";
@@ -213,6 +218,7 @@ public class KioshSearch {
 				vo.setAddress(address);
 				vo.setProduct(product);
 				vo.setCount(count);
+				vo.setPoints(pointToAdd);
 				
 				res = dao.setKioshUpdata(vo);
 				
